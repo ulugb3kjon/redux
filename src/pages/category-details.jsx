@@ -39,13 +39,12 @@ export default function CarPage() {
     setEditCarData(car);
     form.setFieldsValue({
       ...car,
-      models: car.models.map((m) => ({ ...m })), // muhim
+      models: car.models.map((m) => ({ ...m })), 
     });
     setIsEditModalOpen(true);
   };
 
   const handleSaveEdit = (values) => {
-    // idlarni saqlash uchun eski model id’larini tekshirish
     const updatedModels = values.models.map((m, idx) => {
       if (!m.id) m.id = `model_${Date.now()}_${idx}`;
       return { ...m, price: Number(m.price) };
@@ -169,7 +168,6 @@ export default function CarPage() {
         )}
       </Modal>
 
-      {/* Edit Modal */}
       <Modal
         title="Brendni tahrirlash"
         open={isEditModalOpen}
