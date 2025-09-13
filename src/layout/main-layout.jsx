@@ -13,12 +13,12 @@ import { Outlet, Link, useLocation } from "react-router-dom";
 const linkdata = [
   {
     path: "/categories",
-    title: "Cars",
+    title: "Telefonlar",
     icon: AlignLeftOutlined,
   },
   {
     path: "/categoryDetails",
-    title: "Cars Edit",
+    title: "Mashina Edit",
     icon: AlignRightOutlined,
   },
 ];

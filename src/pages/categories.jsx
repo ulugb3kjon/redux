@@ -45,7 +45,7 @@ export default function Cars() {
   return (
     <div>
       <div style={{ marginBottom: 16, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <h2 style={{ margin: 0 }}>Barcha Mashinalar</h2>
+        <h2 style={{ margin: 0 }}>Barcha Telefonlar</h2>
         <Search
           placeholder="Search by brand name"
           onChange={(e) => setSearchText(e.target.value)}

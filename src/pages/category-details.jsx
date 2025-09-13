@@ -37,12 +37,21 @@ export default function CarPage() {
 
   const handleEdit = (car) => {
     setEditCarData(car);
-    form.setFieldsValue({ ...car, models: car.models });
+    form.setFieldsValue({
+      ...car,
+      models: car.models.map((m) => ({ ...m })), // muhim
+    });
     setIsEditModalOpen(true);
   };
 
   const handleSaveEdit = (values) => {
-    dispatch(editCar({ id: editCarData.id, updates: values }));
+    // idlarni saqlash uchun eski model id’larini tekshirish
+    const updatedModels = values.models.map((m, idx) => {
+      if (!m.id) m.id = `model_${Date.now()}_${idx}`;
+      return { ...m, price: Number(m.price) };
+    });
+
+    dispatch(editCar({ id: editCarData.id, updates: { ...values, models: updatedModels } }));
     setIsEditModalOpen(false);
     form.resetFields();
   };
@@ -98,10 +107,7 @@ export default function CarPage() {
                 }))}
                 onChange={(value) => {
                   const model = record.models.find((m) => m.id === value);
-                  setSelectedModels((prev) => ({
-                    ...prev,
-                    [record.key]: model,
-                  }));
+                  setSelectedModels((prev) => ({ ...prev, [record.key]: model }));
                 }}
               />
 
